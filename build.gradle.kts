@@ -19,3 +19,9 @@ tasks.test {
 kotlin {
     jvmToolchain(18)
 }
+
+tasks.withType<JavaExec> {
+    systemProperty("file.encoding", "UTF-8")
+    systemProperty("sun.stdout.encoding", "UTF-8")
+    systemProperty("sun.stderr.encoding", "UTF-8")
+}
