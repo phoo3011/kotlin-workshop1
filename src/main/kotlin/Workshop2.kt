@@ -3,6 +3,18 @@ package org.example
 // 1. กำหนด data class สำหรับเก็บข้อมูลสินค้า
 data class Product(val name: String, val price: Double, val category: String)
 
+fun calculateTotalElectronicsPriceOver500(products: List<Product>): Double {
+    return products
+        .filter { it.category == "Electronics" }
+        .filter { it.price > 500 }
+        .map { it.price }
+        .sum()
+}
+
+fun countElectronicsOver500(products: List<Product>): Int {
+    return products.count { it.category == "Electronics" && it.price > 500 }
+}
+
 fun main() {
     // 2. สร้างรายการสินค้าตัวอย่าง (List<Product>)
     // สินค้า name = "Laptop", price = 35000.0, category = "Electronics"
@@ -36,11 +48,7 @@ fun main() {
     // ดึงเฉพาะราคาออกมาเป็น List<Double>
     // หาผลรวมของราคา
 //🚨    val totalElecPriceOver500 = ?
-    val totalElecPriceOver500 = products
-        .filter { it.category == "Electronics" }
-        .filter { it.price > 500 }
-        .map { it.price }
-        .sum()
+    val totalElecPriceOver500 = calculateTotalElectronicsPriceOver500(products)
 
     println("วิธีที่ 1: ใช้ Chaining กับ List")
 //🚨    println("ผลรวมราคาสินค้า Electronics ที่ราคา > 500 บาท: $totalElecPriceOver500 บาท")
